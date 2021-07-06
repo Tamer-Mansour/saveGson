@@ -2,6 +2,7 @@ package com.example.savegson;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(mExampleList);
+        Log.e("ERR",json);
         editor.putString("task list", json);
         editor.apply();
     }
@@ -71,13 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setInsertButton() {
         Button buttonInsert = findViewById(R.id.button_insert);
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText line1 = findViewById(R.id.edittext_line_1);
-                EditText line2 = findViewById(R.id.edittext_line_2);
-                insertItem(line1.getText().toString(), line2.getText().toString());
-            }
+        buttonInsert.setOnClickListener(v -> {
+
+            EditText line1 = findViewById(R.id.edittext_line_1);
+            EditText line2 = findViewById(R.id.edittext_line_2);
+            insertItem(line1.getText().toString(), line2.getText().toString());
         });
     }
 
